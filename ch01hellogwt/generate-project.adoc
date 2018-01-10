@@ -1,4 +1,4 @@
-= プロジェクト雛形生成
+== プロジェクト雛形生成
 
 GWTプロジェクトの雛形はMavenで生成します。
 
@@ -39,9 +39,9 @@ cd gwtbookcode
 ----
 以降、特に明記しない場合はコマンドの実行はこのディレクトリで行うこととします。
 
-= 生成ファイルの概説
+== 生成ファイルの概説
 
-== Mavenモジュール
+=== Mavenモジュール
 
 Maven親モジュール
 `gwtbookcode`
@@ -59,4 +59,4 @@ GWTコンパイラによってJavaScriptにも変換されますし、Javaコン
 
 続いて各Mavenモジュール内のファイルを見ていきます。
 
-== `gwtbookcode-client`
+=== `gwtbookcode-client`

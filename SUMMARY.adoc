@@ -1,6 +1,6 @@
 = Asciidoctor EPUB3: Sample Book アスキードクター
 
 include::ch00intro/README.adoc[]
-//include::ch01hellogwt/basic-structure.adoc[ディレクトリ構成]
-//include::ch01hellogwt/README.adoc[Hello, GWT]
-//include::ch01hellogwt/generate-project.adoc[プロジェクト雛形作成]
+include::ch01hellogwt/basic-structure.adoc[]
+include::ch01hellogwt/README.adoc[]
+include::ch01hellogwt/generate-project.adoc[]
