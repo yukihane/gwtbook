@@ -1,24 +1,29 @@
+= プロジェクト雛形生成
+
 GWTプロジェクトの雛形はMavenで生成します。
 
-....
+----
 mvn archetype:generate \
    -DarchetypeGroupId=net.ltgt.gwt.archetypes \
    -DarchetypeVersion=2017.10.20 \
    -DarchetypeArtifactId=modular-webapp
-....
+----
+
+上記コマンドを実行すると、いくつかのプロパティ値を入力するように求められますので次のとおり入力してください。
+`(デフォルト)`としている部分は何も入力せずエンターを押せばよいです。
 
 [format="csv",options="header"]
 |===========
-プロパティ,設定値
-groupId,com.github.yukihane.gwtbook
-artifactId,gwtbookcode
-version,(デフォルト)
-package,(デフォルト)
-module-short-name,gwtbookapp
+プロパティ名,設定値
+`groupId`,`com.github.yukihane.gwtbook`
+`artifactId`,`gwtbookcode`
+`version`,`(デフォルト)`
+`package`,`(デフォルト)`
+`module-short-name`,`gwtbookapp`
 |===========
 
-
-....
+結果、次のように出力されます。
+----
 Confirm properties configuration:
 groupId: com.github.yukihane.gwtbook
 artifactId: gwtbookcode
@@ -26,4 +31,32 @@ version: 1.0-SNAPSHOT
 package: com.github.yukihane.gwtbook
 module: App
 module-short-name: gwtbookapp
-....
+----
+
+処理が終わると、カレントディレクトリに`gwtbookcode`が生成されているのでそこに移動します。
+----
+cd gwtbookcode
+----
+以降、特に明記しない場合はコマンドの実行はこのディレクトリで行うこととします。
+
+= 生成ファイルの概説
+
+== Mavenモジュール
+
+Maven親モジュール
+`gwtbookcode`
+の下に3つのMaven子モジュール
+`gwtbookcode-client`, `gwtbookcode-server`, `gwtbookcode-shared`
+が生成されました。
+まずはこれらMavenモジュールの役割分担について説明します。
+
+`gwtbookcode-client`は、GWTコンパイラによってコンパイルされ、最終的にJavaScript(等の静的リソースファイル)となるものを格納します。
+
+`gwtbookcode-server`は、通常のJavaとしてコンパイルされるServletなどを格納します。
+
+`gwtbookcode-shared`は、クライアントとサーバ両方で利用するものを格納します。
+GWTコンパイラによってJavaScriptにも変換されますし、Javaコンパイラによって`.class`ファイルも生成されます。
+
+続いて各Mavenモジュール内のファイルを見ていきます。
+
+== `gwtbookcode-client`
