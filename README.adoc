@@ -1,0 +1,9 @@
+= これは何？
+
+電子書籍(予定) 「JavaプログラマのためのGWT入門」
+
+= 生成
+
+----
+asciidoctor-epub3 -D output -a ebook-format=kf8 toc.adoc
+----
