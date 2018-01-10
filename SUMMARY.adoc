@@ -1,4 +1,5 @@
 = Summary
 
 = はじめに
-. link:ch01intro/prerequisites.adoc[前提知識]
+. link:ch01hellogwt/README.adoc[Hello, GWT]
+.. link:ch01hellogwt/generate-project.adoc[プロジェクト雛形作成]

@@ -1,0 +1,29 @@
+GWTプロジェクトの雛形はMavenで生成します。
+
+....
+mvn archetype:generate \
+   -DarchetypeGroupId=net.ltgt.gwt.archetypes \
+   -DarchetypeVersion=2017.10.20 \
+   -DarchetypeArtifactId=modular-webapp
+....
+
+[format="csv",options="header"]
+|===========
+プロパティ,設定値
+groupId,com.github.yukihane.gwtbook
+artifactId,gwtbookcode
+version,(デフォルト)
+package,(デフォルト)
+module-short-name,gwtbookapp
+|===========
+
+
+....
+Confirm properties configuration:
+groupId: com.github.yukihane.gwtbook
+artifactId: gwtbookcode
+version: 1.0-SNAPSHOT
+package: com.github.yukihane.gwtbook
+module: App
+module-short-name: gwtbookapp
+....
