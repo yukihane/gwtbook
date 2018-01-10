@@ -1,6 +1,5 @@
-= Asciidoctor EPUB3: Sample Book アスキードクター
+= JavaプログラマのためのGWT入門
 
 include::ch00intro/README.adoc[]
 include::ch01hellogwt/basic-structure.adoc[]
 include::ch01hellogwt/README.adoc[]
-include::ch01hellogwt/generate-project.adoc[]
