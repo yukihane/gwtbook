@@ -65,3 +65,10 @@ $TOMCAT_ROOT/bin/startup.sh
 Tomcatが起動したら、Webブラウザで +
 http://localhost:8080/gwtbookcode-server-1.0-SNAPSHOT/index.html +
 へアクセスしてみましょう。
+また、ボタンを押して反応を確かめたり、DevToolsでサーバとの通信が確かに行われていることも確認してみてください。
+
+image::hello-gwt.png[]
+
+image::hello-gwt-dialog.png[]
+
+image::hello-gwt-devtools.png[]

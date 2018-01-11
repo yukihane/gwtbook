@@ -5,4 +5,5 @@ Kazuyuki Dewa
 
 include::ch01intro/README.adoc[]
 
+:imagesdir: ch02hellogwt/images
 include::ch02hellogwt/README.adoc[]
