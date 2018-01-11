@@ -3,4 +3,6 @@
 本章ではサンプルGWTプロジェクトを作成し実行する手順を確認していきます。
 また、その過程で作成するファイルの役割についても見ていきます。
 
+include::say-hello.adoc[]
+
 include::generate-project.adoc[]

@@ -2,7 +2,7 @@
 
 == 本書の目的とカバーする範囲
 
-本書はGWT(バージョン2.７以降) footnote:[ただし本書で用いるのはバージョン2.8.2です]を学ぶ際の導入となることを目的としています。
+本書はGWT(バージョン2.7以降; 本書ではバージョン2.8.2を用います)を学ぶ際の導入となることを目的としています。
 よくオープンソースのプロダクトのオンラインドキュメントにある _Getting Start_ や _Tutorial_ といった章に書かれている内容を想像してもらえればよいかと思います。
 
 では本書を読まずともGWTオンラインドキュメントの該当箇所を読めば良いのでは、と思われるでしょう。
@@ -48,10 +48,24 @@ https://www.manning.com/books/gwt-in-action-second-edition[GWT in Action, Second
 
 必ずしも同じ環境を揃える必要はなく、代替環境を用いても問題は無いはずですが、その場合は適宜読み替えて頂く必要があります。
 
-* Ubuntu 16.04 LTS
+* *Ubuntu 16.04 LTS*
 ** WindowsやMacでも問題ありませんが、コマンド実行はbashを前提に記載しています。
 ** 筆者がWindowsで開発する場合は、 http://gitforwindows.org/[Git for Windows] 付属の git bash を用いています。
-* http://www.oracle.com/technetwork/java/javase/downloads/index.html[Oracle JDK9] 9.0.1
-** GWT開発には1.8以降が必要です。GWT2.8.2よりJDK9上で開発ができるようになりましたのでこれを用います。
+* *Chromium または Google Chrome*
+** 本書では当ブラウザのDevToolsを前提に説明を行います。
+* *http://www.oracle.com/technetwork/java/javase/downloads/index.html[Oracle JDK9] 9.0.1*
+** GWT開発には1.8以降が必要ですfootnote:[link:http://www.gwtproject.org/gettingstarted.html#prereqs[公式サイト]
+にある正確な記述は次の通りです:
+You will need the Java SDK version 1.8 or later (Note that 1.7 is supported
+to compile and run sources, but may not work correctly in dev mode).]。
+GWT2.8.2よりJDK9上でもコンパイルできるようになりましたのでこれを用います。
 ** なお、GWTが対応しているソースコード書式はJava8までです。
-* https://maven.apache.org/download.cgi[Apache Maven] 3.5.2
+* *https://maven.apache.org/download.cgi[Apache Maven] 3.5.2*
+* *https://tomcat.apache.org/download-80.cgi[Apache Tomcat] 8.5.24*
+** 本書の説明上、Servletを動作させられる環境が必要です。
+
+[TIP]
+勘違いされることが多いですが、GWTの実行にServletコンテナ(JavaEEアプリケーションサーバ)が必須、というわけではありません。
+Servletを利用した便利機能(GWT-RPC)をGWTが持っているのですが、
+それを使用しないのであればNginx上で動作させたりRailsアプリに組み込んだりすることも可能です。 +
+コンパイル後のクライアントサイドGWTは単なるJavaScript(等の静的リソース)です。

@@ -1,0 +1,67 @@
+:title-say-hello: GWTアプリケーションを実行してみる
+
+[#say-hello]
+== {title-say-hello}
+
+本節ではGWTアプリケーションを作成し実行してみることで開発時の流れを掴んでみます。
+Mavenを用いてプロジェクトの雛形を作り、その後Webアプリケーションサーバにデプロイし動作確認します。
+
+
+=== プロジェクト雛形生成
+
+GWTプロジェクトの雛形はMavenで生成します。
+
+----
+mvn archetype:generate \
+   -DarchetypeGroupId=net.ltgt.gwt.archetypes \
+   -DarchetypeVersion=2017.10.20 \
+   -DarchetypeArtifactId=modular-webapp
+----
+
+上記コマンドを実行すると、いくつかのプロパティ値を入力するように求められますので次のとおり入力してください。
+`(デフォルト)` としている部分は何も入力せずエンターを押せばよいです。
+
+[format="csv",options="header"]
+|===========
+プロパティ名,設定値
+`groupId`,`com.github.yukihane.gwtbook`
+`artifactId`,`gwtbookcode`
+`version`,`(デフォルト)`
+`package`,`(デフォルト)`
+`module-short-name`,`gwtbookapp`
+|===========
+
+結果、次のように出力されます。
+----
+Confirm properties configuration:
+groupId: com.github.yukihane.gwtbook
+artifactId: gwtbookcode
+version: 1.0-SNAPSHOT
+package: com.github.yukihane.gwtbook
+module: App
+module-short-name: gwtbookapp
+----
+
+=== ビルドと実行
+
+処理が終わると、 `gwtbookcode` ディレクトリが生成されているのでそこに移動します。
+----
+cd gwtbookcode
+----
+以降特に明記しない場合、 コマンドの実行はこのディレクトリで行うこととします。
+また、このディレクトリを便宜上 `$PRJ_ROOT` と呼称します。
+
+続いてビルドを行いTomcatへデプロイし、実行します。
+以降、Tomcatのルートディレクトリを便宜上 `$TOMCAT_ROOT` と呼称します。
+
+----
+mvn clean package
+
+cp gwtbookcode-server/target/gwtbookcode-server-1.0-SNAPSHOT.war $TOMCAT_ROOT/webapps/
+
+$TOMCAT_ROOT/bin/startup.sh
+----
+
+Tomcatが起動したら、Webブラウザで +
+http://localhost:8080/gwtbookcode-server-1.0-SNAPSHOT/index.html +
+へアクセスしてみましょう。
