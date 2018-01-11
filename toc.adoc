@@ -1,5 +1,5 @@
 = JavaプログラマのためのGWT入門
 
-include::ch00intro/README.adoc[]
-include::ch01hellogwt/basic-structure.adoc[]
-include::ch01hellogwt/README.adoc[]
+include::ch01intro/README.adoc[]
+include::ch02hellogwt/basic-structure.adoc[]
+include::ch02hellogwt/README.adoc[]
