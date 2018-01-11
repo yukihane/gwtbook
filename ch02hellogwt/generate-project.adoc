@@ -37,7 +37,7 @@ module-short-name: gwtbookapp
 ----
 cd gwtbookcode
 ----
-以降、特に明記しない場合はコマンドの実行はこのディレクトリで行うこととします。
+以降特に明記しない場合、 コマンドの実行はこのディレクトリで行うこととします。
 
 == 生成ファイルの概説
 
@@ -57,6 +57,82 @@ Maven親モジュール
 `gwtbookcode-shared`は、クライアントとサーバ両方で利用するものを格納します。
 GWTコンパイラによってJavaScriptにも変換されますし、Javaコンパイラによって`.class`ファイルも生成されます。
 
-続いて各Mavenモジュール内のファイルを見ていきます。
+続いて次節からは各Mavenモジュール内のファイルを見ていきます。
 
 === `gwtbookcode-client`
+
+生成された`gwtbookcode-client`の構成は次のようになっています。
+
+----
+gwtbookcode-client
+├── pom.xml
+└── src
+    └── main
+        ├── java
+        │   └── com
+        │       └── github
+        │           └── yukihane
+        │               └── gwtbook
+        │                   └── App.java
+        └── module.gwt.xml
+----
+
+次節以降でこれら自動生成されたファイル`pom.xml`, `App.java`, `module.gwt.xml`について見ていきます。
+
+==== `pom.xml`
+
+==== `App.java`
+
+自動生成されたコードの一部を抜粋します。
+----
+package com.github.yukihane.gwtbook;
+
+import com.google.gwt.core.client.EntryPoint;
+
+public class App implements EntryPoint {
+
+  public void onModuleLoad() {
+    // ...
+  }
+}
+----
+
+==== `module.gwt.xml`
+
+`module.gwt.xml`はGWTモジュールの定義を記述するもので、GWTにおいて核となるファイルです。
+自動生成されたファイルを次に示します。
+
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+  <inherits name="com.google.gwt.user.User" /> // <1>
+  <inherits name="com.google.gwt.user.theme.clean.Clean" />
+
+  <source path="" /> // <2>
+
+  <entry-point class="com.github.yukihane.gwtbook.App" /> // <3>
+
+  <!-- Only support recent browsers -->
+  <set-property name="user.agent" value="ie10,gecko1_8,safari" /> // <4>
+</module>
+----
+<1> 利用するGWTモジュール。Mavenでいうところの`dependency`のようなものです。
+<2> GWTコンパイル対象とするソースのパス。
+クライアントとサーバのソースを同一ソースツリーで管理している場合には設定変更が必要ですが、
+本書ではそのようなことはしませんので変更不要です。
+<3> 前述のエントリーポイント
+<4>
+
+[NOTE]
+本書では_Mavenモジュール_と_GWTモジュール_が登場します。
+これらはそれぞれ異なるものを指している用語なので混同しないように注意してください。 +
+`pom.xml`によって定義されているものが_Mavenモジュール_、
+`*.gwt.xml`によって定義されているものが_GWTモジュール_です。
+
+[TIP]
+*「モジュール」とは？* +
+簡単に言うと、何らかの役割ごとに寄せ集めてひとかたまりにしたもの、でしょうか。
+Javaで言えば、最終的には1モジュールごとに1つの`jar`として出力される、といったイメージの単位です
+(あくまでイメージ。そうでないことも多々あります)。 +
+ちなみに、GWTモジュールについてもう少し正確に知りたいのであれば公式サイトの
+*FAQ - Client*のページfootnote:[http://www.gwtproject.org/doc/latest/FAQ_Client.html#What_is_a_GWT_Module?]に説明があります。
