@@ -1,5 +1,9 @@
 = JavaプログラマのためのGWT入門
+Kazuyuki Dewa
+:doctype: book
 
 include::ch01intro/README.adoc[]
+
 include::ch02hellogwt/basic-structure.adoc[]
+
 include::ch02hellogwt/README.adoc[]
