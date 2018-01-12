@@ -95,3 +95,30 @@ Javaで言えば、最終的には1モジュールごとに1つの`jar`として
 (あくまでイメージ。そうでないことも多々あります)。 +
 ちなみに、GWTモジュールについてもう少し正確に知りたいのであれば公式サイトの
 *FAQ - Client*のページfootnote:[http://www.gwtproject.org/doc/latest/FAQ_Client.html#What_is_a_GWT_Module?]に説明があります。
+
+
+(以下書きかけ)
+
+更に `$TOMCAT_ROOT/webapp/gwtbookcode-server-1.0-SNAPSHOT`
+の内容も見ておきましょう。
+
+----
+gwtbookcode-server-1.0-SNAPSHOT
+├── WEB-INF
+│   ├── classes
+│   │   └── com
+│   │       └── github
+│   │           └── yukihane
+│   │               └── gwtbook
+│   │                   └── GreetingServiceImpl.class
+│   ├── lib
+│   │   ├── gwt-servlet-2.8.2.jar
+│   │   └── gwtbookcode-shared-1.0-SNAPSHOT.jar
+│   └── web.xml
+├── gwtbookapp
+│   ├── 1574DB1698B993E849555203D3A1893D.cache.js
+│   ├── 1B7C472A250FDBD0749FE9F88D279535.cache.js
+│   ├── 7D20E81BBEC73706D3622A91536A0CAF.gwt.rpc
+│   ├── EC8A11CC67D4F7D10E38BBCCAE2F568E.cache.js
+...
+----
