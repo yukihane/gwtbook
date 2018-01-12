@@ -65,8 +65,61 @@ http://localhost:8080/gwtbookcode-server-1.0-SNAPSHOT/index.html +
 へアクセスしてみましょう。
 また、ボタンを押して反応を確かめたり、DevToolsでサーバとの通信が確かに行われていることも確認してみてください。
 
+確認が終わればTomcatを終了させます。
+
+----
+$TOMCAT_ROOT/bin/shutdown.sh
+----
+
+なお、今回は正しく `WAR` が作成されデプロイ可能であることを確認するためにこのような手続きを取りましたが、
+開発中はMavenコマンドでTomcatの操作を行います。
+これについては次節で説明します。
+
 image::hello-gwt.png[]
 
 image::hello-gwt-dialog.png[]
 
 image::hello-gwt-devtools.png[]
+
+=== 開発用モードで実行する - SuperDevMode
+
+前節では `WAR` ファイルを生成しTomcatの `webapp` ディレクトリへコピーすることでデプロイしました。
+プロダクション環境向けとしては正しいですが、何度も修正を繰り返す開発時のデプロイ方法としては少々煩雑です。
+
+そこで、本節では開発時に用いる起動方法を説明します。
+
+起動するのはコードサーバ、HTTPサーバ(Tomcat)の2つです。
+このためターミナルウィンドウを2つ用意します。
+
+1つめのターミナルウィンドウで次のコマンドを実行しコードサーバを起動します。
+----
+mvn gwt:codeserver -pl gwtbookcode-client -am
+----
+
+続いて、2つめのターミナルウィンドウで次のコマンドを実行しTomcatを起動します。
+----
+mvn tomcat7:run -pl gwtbookcode-server -am -Denv=dev
+----
+双方のサーバ起動処理が完了した後、Webブラウザで次のURLにアクセスします。
+
+http://localhost:8080/index.html
+
+アクセスすると、コンパイルが開始された旨のメッセージが表示されます。
+コンパイルが終わると、前節と同じ画面が表示されます。
+
+コードサーバの機能を試してみましょう。
+`gwtbookcode-client/src/main/java/com/github/yukihane/gwtbook/App.java`
+を開き、入力フィールド初期値を設定している41行目
+----
+nameField.setText("GWT User");
+----
+を
+----
+nameField.setText("New GWT User");
+----
+と書き換え保存してください。
+その後Webブラウザでリロードを行うとコンパイルが始まります。
+完了すれば編集した箇所が反映された画面が表示されます。
+
+このように、SuperDevModeではコードサーバがJavaコードをJavaScriptコードへオンデマンドで変換するので、
+編集したコードを即座に画面出力に反映することが可能となります。
