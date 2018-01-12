@@ -6,3 +6,5 @@
 include::say-hello.adoc[]
 
 include::project-structure.adoc[]
+
+include::references.adoc[]

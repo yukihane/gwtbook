@@ -3,6 +3,8 @@ Kazuyuki Dewa
 :doctype: book
 :sectnums:
 
+:title-generate-project: プロジェクト雛形生成
+
 include::ch01intro/README.adoc[]
 
 :imagesdir: ch02hellogwt/images

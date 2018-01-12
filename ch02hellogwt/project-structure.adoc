@@ -1,26 +1,31 @@
 == 生成ファイルの概説
 
+本節では、
+link:#generate-project[{title-generate-project}]
+節で生成したファイル群について見ていきます。
+
 === Mavenモジュール
 
 Maven親モジュール
 `gwtbookcode`
-の下に3つのMaven子モジュール
+と、この下に3つのMaven子モジュール
 `gwtbookcode-client`, `gwtbookcode-server`, `gwtbookcode-shared`
-が生成されました。
+が生成されています。
 まずはこれらMavenモジュールの役割分担について説明します。
 
-`gwtbookcode-client`は、GWTコンパイラによってコンパイルされ、最終的にJavaScript(等の静的リソースファイル)となるものを格納します。
+`gwtbookcode-client`は、GWTコンパイラによってコンパイルされ、
+最終的にJavaScript(等の静的リソースファイル)となるものを格納します。
 
 `gwtbookcode-server`は、通常のJavaとしてコンパイルされるServletなどを格納します。
 
 `gwtbookcode-shared`は、クライアントとサーバ両方で利用するものを格納します。
 GWTコンパイラによってJavaScriptにも変換されますし、Javaコンパイラによって`.class`ファイルも生成されます。
 
-続いて次節からは各Mavenモジュール内のファイルを見ていきます。
+続いて各Mavenモジュール内の主要ファイルを見ていきます。
 
 === `gwtbookcode-client`
 
-生成された`gwtbookcode-client`の構成は次のようになっています。
+==== ファイル構成
 
 ----
 gwtbookcode-client
@@ -36,13 +41,9 @@ gwtbookcode-client
         └── module.gwt.xml
 ----
 
-次節以降でこれら自動生成されたファイル`pom.xml`, `App.java`, `module.gwt.xml`について見ていきます。
-
-==== `pom.xml`
-
 ==== `App.java`
 
-自動生成されたコードの一部を抜粋します。
+コードの一部を抜粋します。
 ----
 package com.github.yukihane.gwtbook;
 
@@ -55,6 +56,11 @@ public class App implements EntryPoint {
   }
 }
 ----
+
+前述の通り `gwtbookcode-client` 内のコードはJavaScriptに変換されます。
+`EntryPoint` を実装したクラスは名前の通りエントリーポイントであり、
+`onModuleLoad` が一番最初に呼ばれるメソッドです(`main` メソッドのようなものです)。
+
 
 ==== `module.gwt.xml`
 
@@ -75,12 +81,19 @@ public class App implements EntryPoint {
   <set-property name="user.agent" value="ie10,gecko1_8,safari" /> // <4>
 </module>
 ----
-<1> 利用するGWTモジュール。Mavenでいうところの`dependency`のようなものです。
+<1> 利用するGWTモジュールを記述します。
+Mavenでいうところの `dependency` のようなものです。
 <2> GWTコンパイル対象とするソースのパス。
-クライアントとサーバのソースを同一ソースツリーで管理している場合には設定変更が必要ですが、
-本書ではそのようなことはしませんので変更不要です。
-<3> 前述のエントリーポイント
-<4>
+`gwtbookcode-client/pom.xml` で設定している
+`moduleName` のパッケージに対応するソースディレクトリからの相対パスになります。
+今回の場合、 `moduleName` は `com.github.yukihane.gwtbook.App` 、
+そしてこのファイルで指定している `source path` は空ですので
+`com/github/yukihane/gwtbook` 以下がGWTコンパイル対象ということになります。
+<3> エントリーポイント。
+<4> コンパイルオプション的なものもあればここで設定します。
+ここで設定している `user.agent` は、対応するブラウザを決める属性です
+footnote:[GWTはブラウザの種類ごとに、そのブラウザに適したJavaScriptコードを生成します。
+その他、多言語対応では言語ごとにコードを生成したりもします。]。
 
 [NOTE]
 本書では_Mavenモジュール_と_GWTモジュール_が登場します。
@@ -96,6 +109,31 @@ Javaで言えば、最終的には1モジュールごとに1つの`jar`として
 ちなみに、GWTモジュールについてもう少し正確に知りたいのであれば公式サイトの
 *FAQ - Client*のページfootnote:[http://www.gwtproject.org/doc/latest/FAQ_Client.html#What_is_a_GWT_Module?]に説明があります。
 
+
+=== `gwtbookcode-server`
+
+==== ファイル構成
+
+----
+gwtbookcode-server
+├── pom.xml
+└── src
+    └── main
+        ├── java
+        │   └── com
+        │       └── github
+        │           └── yukihane
+        │               └── gwtbook
+        │                   └── GreetingServiceImpl.java
+        ├── tomcatconf
+        │   └── context.xml
+        └── webapp
+            ├── WEB-INF
+            │   └── web.xml
+            ├── favicon.ico
+            ├── gwtbookcode.css
+            └── index.html
+----
 
 (以下書きかけ)
 

@@ -1,0 +1,23 @@
+== 本章の落ち穂ひろい
+
+https://github.com/tbroyer/gwt-maven-archetypes[gwt-maven-archetypes]
+及び
+https://github.com/tbroyer/gwt-maven-plugin[tbroyer gwt-maven-plugin]
+footnote:[名の知られたGWT向けMaven pluginは2種類あり、
+それらを区別するため作者名を明記しています。
+ちなみにもう一方は
+https://gwt-maven-plugin.github.io/gwt-maven-plugin/[mojo gwt-maven-plugin]
+です。リンク先にある通り、現在ではtbroyer版を使うことを推奨しています。]
+が本書で使用しているMaven archetype/plugin です。
+必要最低限のオプションについては本書で説明していますが、より詳細を知りたい場合はこちらを参照してください。
+
+https://blog.ltgt.net/how-does-gwts-super-dev-mode-work/[How does GWT's Super Dev Mode work?]
+footnote:[上記Maven plugin作者の方のblogエントリです。]
+は、SuperDevModeの仕組みについて説明しています。
+ただし2012年のポストであり、現在ではもう古くなっている情報も含まれることに注意してください。
+本来オフィシャルサイトで得られるべき情報だと考えますが、そちらは残念ながら更新されていません
+footnote:[link:http://www.gwtproject.org/doc/latest/DevGuideCompilingAndDebugging.html#DevGuideDevMode[オフィシャルサイトの記述]
+はClassic DevModeのままです。]。
+旧来のDevMode(区別するためClassic DevModeやLegacy DevModeと呼ばれることも)
+からSuperDevModeに移行した経緯もまとめられており、
+GWT2.5以前を知っている人にとっては現状の理解を深めるのにも役立つかも知れません。
