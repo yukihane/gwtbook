@@ -62,7 +62,7 @@ GWT2.8.2よりJDK9上でもコンパイルできるようになりましたの�
 ** なお、GWTが対応しているソースコード書式はJava8までです。
 * *https://maven.apache.org/download.cgi[Apache Maven] 3.5.2*
 * *https://tomcat.apache.org/download-80.cgi[Apache Tomcat] 8.5.24*
-** 本書の説明上、Servletを動作させられる環境が必要です。
+** 本書の説明上、Servlet実行可能なWebサーバが必要です。
 
 [TIP]
 勘違いされることが多いですが、GWTの実行にServletコンテナ(JavaEEアプリケーションサーバ)が必須、というわけではありません。
