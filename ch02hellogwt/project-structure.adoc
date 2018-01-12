@@ -114,6 +114,7 @@ Javaで言えば、最終的には1モジュールごとに1つの`jar`として
 
 ==== ファイル構成
 
+`gwtbookcode-server` の構成は典型的な(GWTとは無関係な) `WAR` モジュールです。
 ----
 gwtbookcode-server
 ├── pom.xml
@@ -135,28 +136,50 @@ gwtbookcode-server
             └── index.html
 ----
 
-(以下書きかけ)
-
-更に `$TOMCAT_ROOT/webapp/gwtbookcode-server-1.0-SNAPSHOT`
-の内容も見ておきましょう。
+==== `GreetingServiceImpl.java`
 
 ----
-gwtbookcode-server-1.0-SNAPSHOT
-├── WEB-INF
-│   ├── classes
-│   │   └── com
-│   │       └── github
-│   │           └── yukihane
-│   │               └── gwtbook
-│   │                   └── GreetingServiceImpl.class
-│   ├── lib
-│   │   ├── gwt-servlet-2.8.2.jar
-│   │   └── gwtbookcode-shared-1.0-SNAPSHOT.jar
-│   └── web.xml
-├── gwtbookapp
-│   ├── 1574DB1698B993E849555203D3A1893D.cache.js
-│   ├── 1B7C472A250FDBD0749FE9F88D279535.cache.js
-│   ├── 7D20E81BBEC73706D3622A91536A0CAF.gwt.rpc
-│   ├── EC8A11CC67D4F7D10E38BBCCAE2F568E.cache.js
-...
+package com.github.yukihane.gwtbook;
+
+import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+
+public class GreetingServiceImpl extends RemoteServiceServlet implements GreetingService {
+
+  public GreetingResponse greetServer(String input) throws IllegalArgumentException {
+  ...
+  }
+}
 ----
+
+GWT-RPCを処理するServletクラスです。
+`HttpServlet` を直接継承するのではなく
+`RemoteServiceServlet` を継承しています(なお `RemoteServiceServlet` が
+`HttpServlet` を継承しています)。
+
+実装対象の　`GreetingService` インタフェースは次に説明する
+`gwtbookcode-shared` モジュールにあります。
+
+=== `gwtbookcode-shared`
+
+==== ファイル構成
+
+----
+gwtbookcode-shared
+├── pom.xml
+└── src
+    └── main
+        └── java
+            └── com
+                └── github
+                    └── yukihane
+                        └── gwtbook
+                            ├── FieldVerifier.java
+                            ├── GreetingResponse.java
+                            ├── GreetingService.java
+                            └── GreetingServiceAsync.java
+----
+
+`FieldVerifier.java` はクライアントとサーバ両方で用いるビジネスロジック実装クラス、
+`GreetingResponse.java` はクライアントとサーバ間でやり取りを行うためのデータクラス(いわゆるDTO)、
+`GreetingService.java` 及び `GreetingServiceAsync.java` はGWT-RPCに関わるものです。
+GWT-RPCについては後の章で解説します。
