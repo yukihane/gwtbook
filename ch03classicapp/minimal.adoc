@@ -1,0 +1,61 @@
+== 最小構成
+
+まずはGWTアプリケーションとしての最小の構成を構築しましょう。
+前章で作成したテンプレートプロジェクトから不要なファイルを(必要であれば内容も)削っていきます。
+
+アプリケーションを構成するファイルは次の3ファイルのみです。
+
+|======
+|Mavenモジュール|ファイル名|説明
+|`server`|`web.xml`| WARに必要な定義ファイル
+|`server`|`index.html`| GWTのJavaScriptを読み込むページ
+|`client`|`App.java`| GWTエントリーポイントクラス
+|======
+
+`shared` は必要ないので削除しています。
+
+それでは、それぞれのファイルの中身を見てみましょう。
+
+=== 最小構成のファイル内容
+
+==== `web.xml`
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+
+</web-app>
+----
+見づらいかもしれませんが、中身を全て除去しています。
+
+==== `index.html`
+----
+<!doctype html>
+<html>
+  <head>
+    <meta charset=UTF-8>
+    <script src="gwtbookapp/gwtbookapp.nocache.js"></script>
+  </head>
+  <body>
+  </body>
+</html>
+----
+`<script>` タグでGWTのJavaScriptファイルを読み込んでいるだけです。
+
+==== `App.java`
+
+----
+package com.github.yukihane.gwtbook;
+
+import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.core.client.GWT;
+
+public class App implements EntryPoint {
+
+    @Override
+    public void onModuleLoad() {
+        GWT.log("Hello, GWT!");
+    }
+}
+----
+呼ばれたことがわかるように、ログ出力だけを行うようにした空のエントリーポイントクラスです。
+なお、 `GWT.log()` は、SuperDevModeの場合にだけコンソールへ出力するデバッグ用メソッドです。

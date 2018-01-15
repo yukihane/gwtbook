@@ -16,6 +16,9 @@ include::ch01intro/README.adoc[]
 include::ch02hellogwt/README.adoc[]
 
 
+// 古典的なGWTアプリ
+include::ch03classicapp/README.adoc[]
+
 ////
 TODOリスト(書くべきこと残リスト)
 
