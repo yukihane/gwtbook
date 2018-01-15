@@ -62,7 +62,8 @@ public class App implements EntryPoint {
 `onModuleLoad` が一番最初に呼ばれるメソッドです(`main` メソッドのようなものです)。
 
 
-==== `module.gwt.xml`
+[#module-gwt-xml]
+==== {title-module-gwt-xml}
 
 `module.gwt.xml`はGWTモジュールの定義を記述するもので、GWTにおいて核となるファイルです。
 自動生成されたファイルを次に示します。
@@ -89,7 +90,7 @@ Mavenでいうところの `dependency` のようなものです。
 今回の場合、 `moduleName` は `com.github.yukihane.gwtbook.App` 、
 そしてこのファイルで指定している `source path` は空ですので
 `com/github/yukihane/gwtbook` 以下がGWTコンパイル対象ということになります。
-<3> エントリーポイント。
+<3> エントリーポイントクラス。
 <4> コンパイルオプション的なものもあればここで設定します。
 ここで設定している `user.agent` は、対応するブラウザを決める属性です
 footnote:[GWTはブラウザの種類ごとに、そのブラウザに適したJavaScriptコードを生成します。
@@ -159,6 +160,27 @@ GWT-RPCを処理するServletクラスです。
 実装対象の　`GreetingService` インタフェースは次に説明する
 `gwtbookcode-shared` モジュールにあります。
 
+==== `index.html` ====
+
+----
+<html>
+  <head>
+    <script src="gwtbookapp/gwtbookapp.nocache.js"></script>
+...
+----
+
+`gwtbookapp/gwtbookapp.nocache.js` ファイルの読み込みが完了した際に、
+link:#module-gwt-xml[{title-module-gwt-xml}]節で定義した
+エントリーポイントクラスの `onModuleLoad` メソッドが呼ばれる、という仕組みになっています。
+
+ちなみに、ディレクトリ名/ファイル名接頭詞である `gwtbookapp`
+というのはGWTモジュールのショートネーム
+footnote:[link:#generate-project[{title-generate-project}]
+節で指定した `module-short-name` のこと。
+`gwtbookcode-client/pom.xml` で定義されています。]
+です。
+
+
 === `gwtbookcode-shared`
 
 ==== ファイル構成
@@ -183,3 +205,44 @@ gwtbookcode-shared
 `GreetingResponse.java` はクライアントとサーバ間でやり取りを行うためのデータクラス(いわゆるDTO)、
 `GreetingService.java` 及び `GreetingServiceAsync.java` はGWT-RPCに関わるものです。
 GWT-RPCについては後の章で解説します。
+
+=== WARの中身
+
+最終成果物である `gwtbookcode-server-1.0-SNAPSHOT.war` の中身も確認しておきましょう。
+
+----
+├── WEB-INF
+│   ├── classes
+│   │   └── com
+│   │       └── github
+│   │           └── yukihane
+│   │               └── gwtbook
+│   │                   └── GreetingServiceImpl.class
+│   ├── lib
+│   │   ├── gwt-servlet-2.8.2.jar
+│   │   └── gwtbookcode-shared-1.0-SNAPSHOT.jar
+│   └── web.xml
+├── favicon.ico
+├── gwtbookapp
+│   ├── 1574DB1698B993E849555203D3A1893D.cache.js
+│   ├── 1B7C472A250FDBD0749FE9F88D279535.cache.js
+│   ├── 7D20E81BBEC73706D3622A91536A0CAF.gwt.rpc
+│   ├── EC8A11CC67D4F7D10E38BBCCAE2F568E.cache.js
+│   ├── gwtbookapp.devmode.js
+│   └── gwtbookapp.nocache.js
+├── gwtbookcode.css
+└── index.html
+----
+(主要なもののみ抜粋)
+
+`gwtbookapp` ディレクトリ以下のものが `gwtbookcode-client`
+Mavenモジュールから生成されたもの、それ以外が
+`gwtbookcode-server` Mavenモジュールから生成されたものです。
+`gwtbookcode-shared` は、サーバサイド(Java)として
+`WEB-INF/lib` ディレクトリにjarファイルとしても含まれ、また、
+クライアントサイド(JavaScript)として `gwtbookapp`
+ディレクトリ以下にも含まれます(どのファイルに含まれているのかは名前からは分かりませんが)。
+
+WARの構成についてはGWT特有の話ではないのでここではこれ以上触れませんが
+footnote:[気になる方は"WAR 構成"というようなワードでWeb検索してみてください。]、
+特に違和感の無い素直な構成になっていることがわかります。

@@ -5,7 +5,26 @@ Kazuyuki Dewa
 
 :title-generate-project: プロジェクト雛形生成
 
+:title-module-gwt-xml: `module.gwt.xml`
+
+// はじめに
 include::ch01intro/README.adoc[]
 
+// Hello, GWT
+// 雛形を作って実行、構成を概観する
 :imagesdir: ch02hellogwt/images
 include::ch02hellogwt/README.adoc[]
+
+
+////
+TODOリスト(書くべきこと残リスト)
+
+war構成
+デバッグ方法
+GUIレイアウト
+GSS(Google Closure Stylesheetsにも言及？)
+gwt-rpcなど各論 ← 具体的には？
+Rest
+GWTの将来, J2CL
+JsInterop
+////
