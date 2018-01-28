@@ -23,11 +23,15 @@ include::ch03classicapp/README.adoc[]
 TODOリスト(書くべきこと残リスト)
 
 war構成
-デバッグ方法
+デバッグ方法　クライアントとサーバ
+https://gaertig.pl/blog/en/2009/03/debug-jetty-in-maven-started-by-mvn-jetty-run
 GUIレイアウト
 GSS(Google Closure Stylesheetsにも言及？)
 gwt-rpcなど各論 ← 具体的には？
 Rest
 GWTの将来, J2CL
 JsInterop
+
+jersey(rest用)を組み込んでJDK9で実行する場合、事前に以下の通り環境変数設定が必要:
+export MAVEN_OPTS="--add-modules java.activation,java.xml.bind"
 ////
