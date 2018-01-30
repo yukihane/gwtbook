@@ -3,8 +3,9 @@ Kazuyuki Dewa
 :doctype: book
 :sectnums:
 
+:title-hello-gwt: Hello, GWT
+:title-classical-app-dev: 古典的なGWTアプリケーション作成
 :title-generate-project: プロジェクト雛形生成
-
 :title-module-gwt-xml: `module.gwt.xml`
 
 // はじめに
