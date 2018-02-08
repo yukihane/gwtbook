@@ -5,5 +5,5 @@
 = 生成
 
 ----
-asciidoctor-epub3 -D output -a ebook-format=kf8 toc.adoc
+asciidoctor-epub3 -D dist -a ebook-format=kf8 toc.adoc
 ----
